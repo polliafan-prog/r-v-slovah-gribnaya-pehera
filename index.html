@@ -1,3 +1,4 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -49,7 +50,7 @@ h1{font-size:clamp(28px,6.5vw,46px);margin:0 0 10px;color:var(--moss);text-shado
 .tile.on::after{content:"✓";position:absolute;top:6px;right:8px;width:24px;height:24px;border-radius:50%;background:var(--moss);color:#11260b;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
 .pbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-top:12px}
 .pbar .count{flex:1;font-weight:700;min-width:140px}
-#hud{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:0;right:0;display:flex;justify-content:center;align-items:center;gap:10px;z-index:10;pointer-events:none;padding:0 10px}
+#hud{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:calc(0px + env(safe-area-inset-left,0px));display:flex;justify-content:flex-start;align-items:center;gap:10px;z-index:10;pointer-events:none;padding:0 10px}
 .pill{background:rgba(6,16,52,.7);border:1px solid rgba(163,194,255,.4);border-radius:999px;padding:8px 18px;font-weight:800;font-size:16px}
 .ibtn{width:44px;height:44px;border-radius:50%;background:rgba(6,16,52,.7);border:1px solid rgba(163,194,255,.4);font-size:20px;pointer-events:auto;display:flex;align-items:center;justify-content:center}
 #hint{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));font-size:13px;opacity:.75;z-index:10;text-align:center;width:90%;pointer-events:none;transition:opacity .8s}
@@ -110,7 +111,18 @@ body.touch #hint{bottom:auto;top:calc(118px + env(safe-area-inset-top,0px));widt
 @media (orientation:landscape) and (max-height:400px){.grid{grid-template-columns:repeat(auto-fill,minmax(74px,1fr));gap:6px}.tile span{font-size:12px}.tile{padding:4px 2px 5px}}
 .fsi{width:56%;height:56%;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 .fsi .fs-off{display:none} body.isfs .fsi .fs-on{display:none} body.isfs .fsi .fs-off{display:inline}
-#fsMenuBtn{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:calc(12px + env(safe-area-inset-right,0px));z-index:25}
+#topR{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));right:calc(10px + env(safe-area-inset-right,0px));z-index:30;display:flex;align-items:center;gap:8px}
+#snd{display:flex;align-items:center;gap:8px;background:rgba(6,16,52,.78);border:1px solid rgba(163,194,255,.4);border-radius:999px;padding:3px 14px 3px 3px}
+#snd .ibtn{border:none;background:rgba(255,255,255,.08)}
+#snd .ibtn,#topR>.ibtn{width:40px;height:40px;font-size:19px}
+#vol{-webkit-appearance:none;appearance:none;width:120px;height:6px;border-radius:3px;background:linear-gradient(to right,var(--moss,#c4ff6a) var(--p,70%),rgba(255,255,255,.22) var(--p,70%));outline:none;cursor:pointer;margin:0;touch-action:none}
+#vol::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 0 10px rgba(196,255,106,.7);border:none}
+#vol::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:#fff;border:none}
+#vol:focus-visible{outline:3px solid #7ff0ff;outline-offset:4px}
+.overlay{padding-top:calc(62px + env(safe-area-inset-top,0px))!important}
+@media (max-width:520px){#vol{width:84px}#hud{flex-direction:column;align-items:flex-start;gap:6px}}
+@media (max-width:380px){#vol{width:64px}#snd{padding-right:10px}}
+@media (orientation:landscape) and (max-height:400px){#topR{top:calc(6px + env(safe-area-inset-top,0px))}#snd .ibtn,#topR>.ibtn{width:36px;height:36px;font-size:17px}.overlay{padding-top:calc(50px + env(safe-area-inset-top,0px))!important}}
 body.standalone .fsbtn{display:none!important}
 @media (prefers-reduced-motion:reduce){#toast{transition:none}}
 </style>
@@ -121,9 +133,8 @@ body.standalone .fsbtn{display:none!important}
 <div id="hud" class="hidden">
   <button class="ibtn" id="exitBtn" aria-label="Выйти в меню">🚪</button>
   <div class="pill">Слова: <span id="cnt">0</span> / <span id="tot">0</span></div>
-  <div style="display:flex;gap:8px"><button class="ibtn fsbtn" id="fsBtn" aria-label="Во весь экран"><svg class="fsi" viewBox="0 0 24 24"><path class="fs-on" d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/><path class="fs-off" d="M9 4v5H4M20 9h-5V4M15 20v-5h5M4 15h5v5"/></svg></button><button class="ibtn" id="sndBtn" aria-label="Звук и музыка">🔊</button></div>
 </div>
-<button class="ibtn fsbtn" id="fsMenuBtn" aria-label="Во весь экран"><svg class="fsi" viewBox="0 0 24 24"><path class="fs-on" d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/><path class="fs-off" d="M9 4v5H4M20 9h-5V4M15 20v-5h5M4 15h5v5"/></svg></button>
+<div id="topR"><div id="snd"><button class="ibtn" id="sndBtn" aria-label="Выключить звук" title="Выключить звук">🔊</button><input type="range" id="vol" min="0" max="100" step="1" value="70" aria-label="Громкость"></div><button class="ibtn fsbtn" id="fsBtn" aria-label="Во весь экран"><svg class="fsi" viewBox="0 0 24 24"><path class="fs-on" d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/><path class="fs-off" d="M9 4v5H4M20 9h-5V4M15 20v-5h5M4 15h5v5"/></svg></button></div>
 <div id="hint" class="hidden"></div>
 <div id="joy" class="hidden"><div class="arr a-up" data-k="up"><svg viewBox="0 0 24 24"><path d="M12 4 22 19H2z"/></svg></div><div class="arr a-left" data-k="left"><svg style="transform:rotate(-90deg)" viewBox="0 0 24 24"><path d="M12 4 22 19H2z"/></svg></div><div class="arr a-right" data-k="right"><svg style="transform:rotate(90deg)" viewBox="0 0 24 24"><path d="M12 4 22 19H2z"/></svg></div><div class="arr a-down" data-k="down"><svg style="transform:rotate(180deg)" viewBox="0 0 24 24"><path d="M12 4 22 19H2z"/></svg></div></div>
 <button id="jump" class="hidden">прыжок</button>
@@ -1046,11 +1057,21 @@ const ffGeo=new THREE.BufferGeometry();ffGeo.setAttribute('position',new THREE.B
 scene.add(new THREE.Points(ffGeo,new THREE.PointsMaterial({color:0xfff6c0,size:0.35,map:GLOW,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending})));
 
 // ================= ЗВУК =================
-let AC=null,master=null,soundOn=true,musicTimer=null;
+let AC=null,master=null,soundOn=true,musicTimer=null,vol=70;
+try{const sv=JSON.parse(localStorage.getItem('caveSound')||'null');if(sv){vol=Math.max(0,Math.min(100,+sv.v||0));soundOn=!!sv.on&&vol>0;}}catch(e){}
+function masterLevel(){return soundOn?Math.pow(vol/100,1.6)*1.6:0;}
+function applySound(){
+  if(master&&AC)master.gain.setTargetAtTime(masterLevel(),AC.currentTime,0.03);
+  const b=document.getElementById('sndBtn'),r=document.getElementById('vol');
+  b.textContent=!soundOn||vol===0?'🔇':vol<40?'🔉':'🔊';
+  b.setAttribute('aria-label',soundOn?'Выключить звук':'Включить звук');b.title=b.getAttribute('aria-label');
+  const shown=soundOn?vol:0;r.value=shown;r.style.setProperty('--p',shown+'%');
+  try{localStorage.setItem('caveSound',JSON.stringify({v:vol,on:soundOn}));}catch(e){}
+}
 function ensureAudio(){
   if(AC){if(AC.state==='suspended')AC.resume();return;}
   try{AC=new (window.AudioContext||window.webkitAudioContext)();}catch(e){return;}
-  master=AC.createGain();master.gain.value=soundOn?1:0;master.connect(AC.destination);
+  master=AC.createGain();master.gain.value=masterLevel();master.connect(AC.destination);
   startMusic();
 }
 function startMusic(){
@@ -1094,7 +1115,7 @@ const overlays=['menu','picker','card','win','confirm'];
 function show(id){overlays.forEach(o=>$(o).classList.toggle('hidden',o!==id));}
 let hintT=0;
 function setPlayUI(on){
-  $('hud').classList.toggle('hidden',!on);$('fsMenuBtn').classList.toggle('hidden',!!on);$('hint').classList.toggle('hidden',!on);
+  $('hud').classList.toggle('hidden',!on);$('hint').classList.toggle('hidden',!on);
   clearTimeout(hintT);const h=$('hint');if(on&&touch){h.classList.add('fade');hintT=setTimeout(()=>{h.classList.remove('fade');hintT=setTimeout(()=>h.classList.add('fade'),9000);},3000);}else h.classList.remove('fade');
   if(!on){try{padPtr.clear();padSync();}catch(e){}}
   $('joy').classList.toggle('hidden',!(on&&touch));$('jump').classList.toggle('hidden',!(on&&touch));
@@ -1155,8 +1176,12 @@ function fsToggle(){
 }
 function fsSync(){document.body.classList.toggle('isfs',fsNow());setTimeout(onResize,200);}
 document.addEventListener('fullscreenchange',fsSync);document.addEventListener('webkitfullscreenchange',fsSync);
-$('fsBtn').onclick=fsToggle;$('fsMenuBtn').onclick=fsToggle;
-$('sndBtn').onclick=()=>{ensureAudio();soundOn=!soundOn;$('sndBtn').textContent=soundOn?'🔊':'🔇';if(master)master.gain.value=soundOn?1:0;};
+$('fsBtn').onclick=fsToggle;
+$('sndBtn').onclick=e=>{ensureAudio();if(!soundOn&&vol===0)vol=50;soundOn=!soundOn;applySound();e.currentTarget.blur();};
+$('vol').addEventListener('input',e=>{ensureAudio();vol=+e.target.value;soundOn=vol>0;applySound();});
+$('vol').addEventListener('change',e=>{if(soundOn)tone(660,'triangle',0.14,0.2);e.target.blur();});
+['pointerdown','keydown','touchstart'].forEach(ev=>$('topR').addEventListener(ev,e=>e.stopPropagation(),{passive:true}));
+applySound();
 $('exitBtn').onclick=()=>{if(screen==='play'){screen='confirm';show('confirm');}};
 $('noExit').onclick=()=>{screen='play';show(null);};
 $('yesExit').onclick=()=>toMenu();
@@ -1345,3 +1370,5 @@ if(window.visualViewport)visualViewport.addEventListener('resize',onResize);
 </script>
 </body>
 </html>
+
+</body></html>
