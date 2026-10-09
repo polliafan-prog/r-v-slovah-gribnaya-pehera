@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="Грибная пещера">
 <title>Грибная пещера: звук Р</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kurale&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
   --bg:#040a24;--fg:#eaf3ff;--moss:#c4ff6a;--ice:#a3c2ff;--panel:rgba(8,20,64,.88);--red:#e5536b}
@@ -125,6 +125,82 @@ body.touch #hint{bottom:auto;top:calc(118px + env(safe-area-inset-top,0px));widt
 @media (orientation:landscape) and (max-height:400px){#topR{top:calc(6px + env(safe-area-inset-top,0px))}#snd .ibtn,#topR>.ibtn{width:36px;height:36px;font-size:17px}.overlay{padding-top:calc(50px + env(safe-area-inset-top,0px))!important}}
 body.standalone .fsbtn{display:none!important}
 @media (prefers-reduced-motion:reduce){#toast{transition:none}}
+/* ---------- обложка ---------- */
+.cover{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:flex-start;
+  padding:max(14px,env(safe-area-inset-top,0px)) 16px max(14px,env(safe-area-inset-bottom,0px)) max(4vw,calc(16px + env(safe-area-inset-left,0px)));
+  background:linear-gradient(90deg,rgba(2,6,24,.6) 0%,rgba(2,6,24,.22) 40%,rgba(2,6,24,0) 62%)}
+.sign{position:relative;width:min(390px,100%);max-height:100%;overflow:auto;scrollbar-width:none;
+  background:linear-gradient(180deg,rgba(14,32,92,.80),rgba(6,16,52,.86));
+  border:1px solid rgba(163,194,255,.32);border-radius:195px 195px 28px 28px;padding:58px 24px 18px;text-align:center;
+  box-shadow:0 0 50px rgba(196,255,106,.12),0 30px 70px rgba(0,0,10,.55);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.sign::-webkit-scrollbar{display:none}
+.sign::before{content:"";position:absolute;inset:7px;border-radius:188px 188px 22px 22px;border:1.5px solid rgba(196,255,106,.5);
+  box-shadow:0 0 14px rgba(196,255,106,.22),inset 0 0 14px rgba(196,255,106,.1);pointer-events:none}
+.orn{display:block;width:96px;height:46px;margin:-32px auto 2px;overflow:visible;filter:drop-shadow(0 0 7px rgba(196,255,106,.75))}
+.eyebrow{margin:0;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--ice)}
+.sign h1{margin:4px 0 2px;font-family:"Kurale",Georgia,serif;font-weight:400;color:var(--moss);line-height:.95;
+  text-shadow:0 0 18px rgba(196,255,106,.55),0 0 42px rgba(196,255,106,.25)}
+.sign h1 .t1{display:block;font-size:clamp(46px,7vw,62px);letter-spacing:.01em}
+.sign h1 .t2{display:block;font-size:clamp(22px,3vw,27px);margin-top:4px;color:var(--fg);text-shadow:0 0 14px rgba(163,194,255,.45)}
+.sign .lead{font-size:13.5px;line-height:1.5;margin:10px auto 12px;max-width:32ch;opacity:.86}
+.lvs{display:flex;flex-direction:column;gap:4px;margin:0 0 10px;text-align:left}
+.lv{display:flex;align-items:center;gap:12px;width:100%;padding:9px 12px;background:transparent;border-bottom:1px dashed rgba(163,194,255,.25);text-align:left;border-radius:0}
+.lv::before{content:"";flex:none;width:16px;height:16px;border-radius:50%;border:2px solid rgba(196,255,106,.75);transition:background .2s}
+.lv[aria-pressed="true"]{background:rgba(196,255,106,.13);border-radius:14px;border-bottom-color:transparent}
+.lv[aria-pressed="true"]::before{background:var(--moss);box-shadow:inset 0 0 0 3px rgba(10,24,70,1),0 0 10px rgba(196,255,106,.7)}
+.lv span{display:flex;flex-direction:column;gap:2px;min-width:0}
+.sign .lv b{font-family:"Kurale",Georgia,serif;font-weight:400;font-size:19px;line-height:1.15}
+.lv i{font-style:normal;font-size:13px;font-weight:600;opacity:.85}
+.lv i .rr{font-size:1.2em}
+.vol-row{display:flex;align-items:center;justify-content:center;gap:10px;margin:2px 0 12px;font-weight:700;font-size:14px;opacity:.95}
+.vb{width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(163,194,255,.4);background:rgba(255,255,255,.06);font-size:19px;display:grid;place-items:center;padding:0}
+.vr{-webkit-appearance:none;appearance:none;width:150px;height:6px;border-radius:3px;background:linear-gradient(to right,var(--moss) var(--p,70%),rgba(255,255,255,.22) var(--p,70%));outline:none;cursor:pointer;margin:0;touch-action:none}
+.vr::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 0 10px rgba(196,255,106,.7);border:none}
+.vr::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:#fff;border:none}
+.vr:focus-visible{outline:3px solid #7ff0ff;outline-offset:4px}
+.sign .btn{font-family:"Kurale",Georgia,serif;font-weight:400;font-size:24px;padding:11px 40px}
+.sign .note{font-size:11.5px;line-height:1.5;margin:12px auto 0;max-width:34ch;opacity:.7}
+.sign .credit{margin-top:8px;font-size:12px;opacity:.6}
+body.oncover #snd{display:none}
+@media (max-aspect-ratio:4/5){
+  .cover{align-items:flex-end;justify-content:center;padding-left:16px;background:linear-gradient(0deg,rgba(2,6,24,.6),rgba(2,6,24,0) 58%)}
+  .sign{width:min(430px,100%);border-radius:150px 150px 24px 24px;padding-top:44px}
+  .sign::before{border-radius:143px 143px 18px 18px}
+  .sign .lead,.sign .note{display:none}
+  .lvs{gap:2px}.lv{padding:7px 12px}
+}
+@media (max-height:740px) and (min-aspect-ratio:4/5){.sign .note{display:none}.sign .lead{margin:6px auto 8px}.sign{padding-top:50px}}
+@media (max-height:620px){
+  .sign{border-radius:120px 120px 20px 20px;padding:34px 18px 12px}
+  .sign::before{border-radius:113px 113px 14px 14px}
+  .orn{margin-top:-22px;height:34px;width:76px}
+  .sign h1 .t1{font-size:40px}.sign h1 .t2{font-size:20px;margin-top:2px}
+  .sign .lead,.sign .note{display:none}
+  .lvs{gap:2px}.lv{padding:6px 12px}
+  .sign .btn{font-size:20px;padding:9px 32px}
+}
+@media (max-height:420px){
+  .cover{padding-top:8px;padding-bottom:8px}
+  .sign{width:min(470px,66vw);border-radius:80px 80px 18px 18px;padding:16px 16px 8px}
+  .sign::before{border-radius:73px 73px 12px 12px;inset:6px}
+  .orn,.eyebrow{display:none}
+  .sign h1{margin:2px 0 6px}.sign h1 .t1{font-size:30px;display:inline}.sign h1 .t2{font-size:18px;display:inline;margin-left:6px}
+  .lvs{flex-direction:row;gap:6px;margin-bottom:4px}.lv{flex:1;padding:6px 8px;gap:6px;border-bottom:0}
+  .lv::before{width:13px;height:13px}
+  .sign .lv b{font-size:14px}.lv i{font-size:10.5px}.sign{width:min(520px,70vw)}
+  .vol-row{margin-bottom:6px}.vb{width:34px;height:34px;font-size:16px}
+  .sign .btn{font-size:18px;padding:7px 28px}
+  .sign .credit{margin-top:4px;font-size:11px}
+}
+@media (min-width:1500px) and (min-height:860px){
+  .sign{width:440px;padding:68px 30px 22px}
+  .sign h1 .t1{font-size:70px}.sign h1 .t2{font-size:30px}
+  .sign .lead{font-size:15px}.sign .lv b{font-size:21px}.lv i{font-size:14px}
+  .sign .btn{font-size:26px}
+}
+@media (prefers-reduced-motion:reduce){.lv::before{transition:none}}
+
 </style>
 </head>
 <body>
@@ -134,22 +210,31 @@ body.standalone .fsbtn{display:none!important}
   <button class="ibtn" id="exitBtn" aria-label="Выйти в меню">🚪</button>
   <div class="pill">Слова: <span id="cnt">0</span> / <span id="tot">0</span></div>
 </div>
-<div id="topR"><div id="snd"><button class="ibtn" id="sndBtn" aria-label="Выключить звук" title="Выключить звук">🔊</button><input type="range" id="vol" min="0" max="100" step="1" value="70" aria-label="Громкость"></div><button class="ibtn fsbtn" id="fsBtn" aria-label="Во весь экран"><svg class="fsi" viewBox="0 0 24 24"><path class="fs-on" d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/><path class="fs-off" d="M9 4v5H4M20 9h-5V4M15 20v-5h5M4 15h5v5"/></svg></button></div>
+<div id="topR"><div id="snd"><button class="ibtn" id="sndBtn" data-snd aria-label="Выключить звук" title="Выключить звук">🔊</button><input type="range" id="vol" data-vol min="0" max="100" step="1" value="70" aria-label="Громкость"></div><button class="ibtn fsbtn" id="fsBtn" aria-label="Во весь экран"><svg class="fsi" viewBox="0 0 24 24"><path class="fs-on" d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/><path class="fs-off" d="M9 4v5H4M20 9h-5V4M15 20v-5h5M4 15h5v5"/></svg></button></div>
 <div id="hint" class="hidden"></div>
 <div id="joy" class="hidden"><div class="arr a-up" data-k="up"><svg viewBox="0 0 24 24"><path d="M12 4 22 19H2z"/></svg></div><div class="arr a-left" data-k="left"><svg style="transform:rotate(-90deg)" viewBox="0 0 24 24"><path d="M12 4 22 19H2z"/></svg></div><div class="arr a-right" data-k="right"><svg style="transform:rotate(90deg)" viewBox="0 0 24 24"><path d="M12 4 22 19H2z"/></svg></div><div class="arr a-down" data-k="down"><svg style="transform:rotate(180deg)" viewBox="0 0 24 24"><path d="M12 4 22 19H2z"/></svg></div></div>
 <button id="jump" class="hidden">прыжок</button>
 <div id="toast"></div>
 
-<div class="overlay" id="menu"><div class="panel">
-  <h1>Грибная пещера</h1>
-  <p class="lead">Помогите гному собрать светящиеся картинки в подземной пещере. Каждая картинка — слово со звуком Р, которое ребёнок называет вслух. До островов на озере можно допрыгнуть по камням.</p>
-  <div class="cats">
-    <button class="cat" data-cat="start"><span>Р в начале слова</span><span class="ex" data-ex="рыба"></span></button>
-    <button class="cat" data-cat="mid"><span>Р в середине слова</span><span class="ex" data-ex="корова"></span></button>
-    <button class="cat" data-cat="end"><span>Р в конце слова</span><span class="ex" data-ex="сыр"></span></button>
-  </div>
-  <div class="credit">тгк: @polliafania</div>
-</div></div>
+<div class="cover" id="menu"><div class="sign" id="sign">
+    <svg class="orn" viewBox="0 0 120 58" aria-hidden="true">
+      <g fill="#e6f5d2"><path d="M54 30q-2 14-4 24h20q-2-10-4-24z"/><path d="M20 40q-1 8-2 14h11q-1-6-2-14z"/><path d="M93 37q-1 9-2 17h12q-1-8-2-17z"/></g>
+      <g fill="#c4ff6a"><path d="M32 33Q36 3 60 3T88 33Q60 26 32 33z"/><path d="M8 43Q11 25 24 25T40 43Q24 38 8 43z"/><path d="M80 40Q83 20 97 20T114 40Q97 35 80 40z"/></g>
+      <g fill="#f4ffe0" opacity=".85"><circle cx="50" cy="14" r="3.2"/><circle cx="69" cy="12" r="2.6"/><circle cx="60" cy="22" r="2.1"/><circle cx="96" cy="28" r="2"/><circle cx="21" cy="33" r="1.9"/></g>
+    </svg>
+    <p class="eyebrow">Звук Р в словах</p>
+    <h1><span class="t1">Грибная</span><span class="t2">пещера</span></h1>
+    <p class="lead">Гном с фонарём ищет светящиеся картинки у подземного озера. Ребёнок называет каждую вслух, а до островов гном добирается прыжками по камням.</p>
+    <div class="lvs" role="group" aria-label="Где стоит звук Р">
+      <button class="lv" data-c="start" aria-pressed="true"><span><b>Р в начале слова</b><i data-ex="рыба, ракета, робот"></i></span></button>
+      <button class="lv" data-c="mid" aria-pressed="false"><span><b>Р в середине слова</b><i data-ex="корова, жираф, гитара"></i></span></button>
+      <button class="lv" data-c="end" aria-pressed="false"><span><b>Р в конце слова</b><i data-ex="сыр, топор, шар"></i></span></button>
+    </div>
+    <div class="vol-row"><span>Звук</span><button class="vb" data-snd aria-label="Выключить звук" title="Выключить звук">🔊</button><input class="vr" data-vol type="range" min="0" max="100" step="1" value="70" aria-label="Громкость"></div>
+    <button class="btn" id="goBtn">Выбрать слова</button>
+    <p class="note">В пещере появится до 20 картинок из 100. Карточку со словом закрывает кнопка «Готово» или пробел.</p>
+    <div class="credit">тгк: @polliafania</div>
+  </div></div>
 
 <div class="overlay hidden" id="picker"><div class="panel">
   <div class="ptop"><button class="btn ghost" id="backBtn">Назад</button><h2 id="ptitle"></h2><p>Выберите до 20 слов — они появятся в пещере.</p></div>
@@ -1062,10 +1147,9 @@ try{const sv=JSON.parse(localStorage.getItem('caveSound')||'null');if(sv){vol=Ma
 function masterLevel(){return soundOn?Math.pow(vol/100,1.6)*1.6:0;}
 function applySound(){
   if(master&&AC)master.gain.setTargetAtTime(masterLevel(),AC.currentTime,0.03);
-  const b=document.getElementById('sndBtn'),r=document.getElementById('vol');
-  b.textContent=!soundOn||vol===0?'🔇':vol<40?'🔉':'🔊';
-  b.setAttribute('aria-label',soundOn?'Выключить звук':'Включить звук');b.title=b.getAttribute('aria-label');
-  const shown=soundOn?vol:0;r.value=shown;r.style.setProperty('--p',shown+'%');
+  const ic=!soundOn||vol===0?'🔇':vol<40?'🔉':'🔊',lb=soundOn?'Выключить звук':'Включить звук',shown=soundOn?vol:0;
+  document.querySelectorAll('[data-snd]').forEach(b=>{b.textContent=ic;b.setAttribute('aria-label',lb);b.title=lb;});
+  document.querySelectorAll('[data-vol]').forEach(r=>{r.value=shown;r.style.setProperty('--p',shown+'%');});
   try{localStorage.setItem('caveSound',JSON.stringify({v:vol,on:soundOn}));}catch(e){}
 }
 function ensureAudio(){
@@ -1112,7 +1196,8 @@ const TITLES={start:'Р в начале слова',mid:'Р в середине 
 const MAX=20,touch=('ontouchstart' in window)||navigator.maxTouchPoints>0;
 let screen='menu',cat='start',selected=new Set(),gameWords=[];
 const overlays=['menu','picker','card','win','confirm'];
-function show(id){overlays.forEach(o=>$(o).classList.toggle('hidden',o!==id));}
+function show(id){overlays.forEach(o=>$(o).classList.toggle('hidden',o!==id));document.body.classList.toggle('oncover',id==='menu');}
+document.body.classList.add('oncover');
 let hintT=0;
 function setPlayUI(on){
   $('hud').classList.toggle('hidden',!on);$('hint').classList.toggle('hidden',!on);
@@ -1156,7 +1241,14 @@ function openPicker(c){
   updCount();screen='picker';show('picker');genThumbs(WORDS[c]);
 }
 function updCount(){$('pcount').textContent=`Выбрано: ${selected.size} из ${MAX}`;$('startBtn').disabled=selected.size===0;}
-document.querySelectorAll('.cat').forEach(b=>b.onclick=()=>{ensureAudio();openPicker(b.dataset.cat);});
+const EXAMPLES={start:['ракета','рыба','робот'],mid:['корова','жираф','гитара'],end:['сыр','топор','шар']};
+let coverCat='start';
+function pickCat(c){
+  coverCat=c;document.querySelectorAll('.lv').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.c===c)));
+  buildShowcase(c);
+}
+document.querySelectorAll('.lv').forEach(b=>b.onclick=()=>{ensureAudio();if(b.dataset.c!==coverCat){pickCat(b.dataset.c);tone(880,'triangle',0.1,0.25);}});
+$('goBtn').onclick=()=>{ensureAudio();openPicker(coverCat);};
 $('backBtn').onclick=()=>{thumbJob++;screen='menu';show('menu');};
 $('clearBtn').onclick=()=>{selected.clear();document.querySelectorAll('.tile').forEach(t=>t.classList.remove('on'));updCount();};
 $('randBtn').onclick=()=>{const l=[...WORDS[cat]].sort(()=>Math.random()-0.5).slice(0,MAX);selected=new Set(l);document.querySelectorAll('.tile').forEach(t=>t.classList.toggle('on',selected.has(t.dataset.w)));updCount();};
@@ -1177,9 +1269,10 @@ function fsToggle(){
 function fsSync(){document.body.classList.toggle('isfs',fsNow());setTimeout(onResize,200);}
 document.addEventListener('fullscreenchange',fsSync);document.addEventListener('webkitfullscreenchange',fsSync);
 $('fsBtn').onclick=fsToggle;
-$('sndBtn').onclick=e=>{ensureAudio();if(!soundOn&&vol===0)vol=50;soundOn=!soundOn;applySound();e.currentTarget.blur();};
-$('vol').addEventListener('input',e=>{ensureAudio();vol=+e.target.value;soundOn=vol>0;applySound();});
-$('vol').addEventListener('change',e=>{if(soundOn)tone(660,'triangle',0.14,0.2);e.target.blur();});
+document.querySelectorAll('[data-snd]').forEach(b=>b.onclick=e=>{ensureAudio();if(!soundOn&&vol===0)vol=50;soundOn=!soundOn;applySound();e.currentTarget.blur();});
+document.querySelectorAll('[data-vol]').forEach(r=>{
+  r.addEventListener('input',e=>{ensureAudio();vol=+e.target.value;soundOn=vol>0;applySound();});
+  r.addEventListener('change',e=>{if(soundOn)tone(660,'triangle',0.14,0.2);e.target.blur();});});
 ['pointerdown','keydown','touchstart'].forEach(ev=>$('topR').addEventListener(ev,e=>e.stopPropagation(),{passive:true}));
 applySound();
 $('exitBtn').onclick=()=>{if(screen==='play'){screen='confirm';show('confirm');}};
@@ -1223,6 +1316,19 @@ function landSpots(n){
   return out;
 }
 function clearWords(){for(const w of words)scene.remove(w.g);words=[];}
+const SHOW_POS=[[-3.2,2.4],[3.4,1.6],[0.4,-0.9]];let showcase=[];
+function buildShowcase(c){
+  for(const o of showcase)scene.remove(o.g);showcase=[];
+  (EXAMPLES[c]||[]).filter(w=>MODELS[w]).forEach((w,i)=>{
+    const [x,z]=SHOW_POS[i],gy=groundAt(x,z)??0,g=new THREE.Group();g.position.set(x,gy,z);
+    const m=makeModel(w,true);m.position.y=1.45;g.add(m);
+    const glow=new THREE.Sprite(new THREE.SpriteMaterial({map:GLOW,color:0xffbe66,transparent:true,opacity:0.6,depthWrite:false,blending:THREE.AdditiveBlending}));
+    glow.position.y=1.45;glow.scale.set(2.9,2.9,1);g.add(glow);
+    const ring=new THREE.Mesh(new THREE.TorusGeometry(0.9,0.06,8,40),new THREE.MeshBasicMaterial({color:0xffbe66,transparent:true,opacity:0.9,blending:THREE.AdditiveBlending,depthWrite:false}));
+    ring.rotation.x=-Math.PI/2;ring.position.y=0.05;g.add(ring);
+    g.scale.setScalar(0.01);scene.add(g);showcase.push({g,m,glow,ring,phase:i*2.1,t:-i*0.12});
+  });
+}
 function startGame(list){
   clearWords();gameWords=list;count=0;
   const ws=shuffle(list),nIsl=Math.min(4,Math.floor(ws.length*0.3)),spots=[...shuffle(ISLAND_SPOTS).slice(0,nIsl),...landSpots(ws.length-nIsl)];
@@ -1322,6 +1428,14 @@ function updateHero(dt,now){
 // ================= ЦИКЛ =================
 const camPos=new V3(),camTarget=new V3(),tmpV=new V3();
 let camDist=8.5,camH=5.2;
+const vOff={x:0,y:0};let vOffInit=false;
+function coverShift(){
+  if(screen!=='menu')return [0,0];
+  const el=document.getElementById('sign');if(!el)return [0,0];
+  const r=el.getBoundingClientRect(),W=innerWidth,H=innerHeight;
+  if(W/H<=0.8){const cy=Math.max(0,r.top)/2;return [0,Math.max(-H*0.32,cy-H/2)];}
+  const cx=(r.right+W)/2;return [Math.min(W*0.3,Math.max(0,cx-W/2)),0];
+}
 function fitCam(){const a=innerWidth/Math.max(1,innerHeight);camera.aspect=a;
   camera.fov=a<0.65?74:a<0.9?68:a<1.25?63:a>2.1?52:58;camDist=a<0.65?10.8:a<0.9?10:a<1.25?9.2:8.5;camH=a<0.9?6.1:5.2;camera.updateProjectionMatrix();}
 fitCam();
@@ -1330,7 +1444,21 @@ camera.position.set(0,6,15);
 function tick(){
   const dt=Math.min(clock.getDelta(),0.05),t=clock.elapsedTime,now=performance.now();
   if(screen==='play')updateHero(dt,now);
-  else if(screen==='menu'||screen==='picker')camYaw+=dt*0.05;
+  else if(screen==='menu'||screen==='picker'){
+    camYaw+=(Math.sin(t*0.12)*0.3-camYaw)*Math.min(1,dt*1.5);
+    let d=2.5-hero.rotation.y;d=Math.atan2(Math.sin(d),Math.cos(d));hero.rotation.y+=d*Math.min(1,dt*3);
+  }
+  const onCov=screen==='menu'||screen==='picker';
+  for(const o of showcase){
+    o.g.visible=onCov;if(!onCov)continue;
+    o.t+=dt;const k=Math.min(1,Math.max(0,o.t/0.45)),sc=k<1?0.01+(1.18*k-0.18*k*k)*1.1:1.1;o.g.scale.setScalar(Math.max(0.01,sc));
+    o.m.position.y=1.45+Math.sin(t*1.8+o.phase)*0.15;o.m.rotation.y+=dt*0.8;o.glow.position.y=o.m.position.y;
+    o.ring.scale.setScalar(1+Math.sin(t*3+o.phase)*0.08);
+  }
+  {const tg=coverShift();if(!vOffInit){vOff.x=tg[0];vOff.y=tg[1];vOffInit=true;}
+   const kk=Math.min(1,dt*4);vOff.x+=(tg[0]-vOff.x)*kk;vOff.y+=(tg[1]-vOff.y)*kk;
+   if(Math.abs(vOff.x)<0.3&&Math.abs(vOff.y)<0.3&&tg[0]===0&&tg[1]===0){if(camera.view&&camera.view.enabled)camera.clearViewOffset();}
+   else camera.setViewOffset(innerWidth,innerHeight,-vOff.x,-vOff.y,innerWidth,innerHeight);}
   if(screen==='play'||screen==='card'||screen==='confirm'){let d=hero.rotation.y-camYaw;d=Math.atan2(Math.sin(d),Math.cos(d));camYaw+=d*Math.min(1,dt*4);}
   lantern.rotation.z=Math.sin(walk*0.5)*0.15;llight.intensity=2.1+Math.sin(t*9)*0.15+Math.sin(t*23)*0.08;
   // тень
@@ -1361,7 +1489,7 @@ function tick(){
   if(screen==='card'&&cardR&&cardModel)cardR.render(cardScene,cardCam);
   requestAnimationFrame(tick);
 }
-resetHero();tick();
+resetHero();hero.rotation.y=2.5;pickCat('start');tick();
 function onResize(){fitCam();fitRenderer();
   if(screen==='card'&&cardR){const s=cardCanvas.clientWidth||220;cardR.setSize(s,s,false);}}
 addEventListener('resize',onResize);addEventListener('orientationchange',()=>setTimeout(onResize,250));
